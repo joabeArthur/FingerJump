@@ -4,23 +4,57 @@
              x:Class="FingerJump.MainPage"
              Shell.NavBarIsVisible="False">
 
-   <Grid>
+       <Grid>
 
-      <Image Source="cidade.jpg"
-             Aspect="AspectFill"
-             x:Name="Fundo"
-             VerticalOptions="Fill"
-             HorizontalOptions="Fill"/>
+              <Image Source="cidade.jpg"
+                     Aspect="AspectFill"
+                     x:Name="Fundo"
+                     VerticalOptions="Fill"
+                     HorizontalOptions="Fill"/>
 
-      <Image Source="cachorro.png"
-             x:Name="Passaro"
-             Margin="10"
-             HorizontalOptions="Start"
-             HeightRequest="150"
-             WidthRequest="150"/>
+              <Image Source="cachorro.png"
+                     x:Name="Passaro"
+                     Margin="10"
+                     HorizontalOptions="Start"
+                     HeightRequest="150"
+                     WidthRequest="150"/>
 
-      <Image Source="osso.png"
-             x:Name="Osso"/>
-   </Grid>
+              <Image Source="osso.png"
+                     x:Name="ossoCima"
+                     HorizontalOptions="End"
+                     MaximumHeightRequest="350"
+                     VerticalOptions="Start"/>
+              
+              <Image Source="osso.png"
+                            x:Name="ossoBaixo"
+                            HorizontalOptions="End"
+                            MaximumHeightRequest="350"
+                            VerticalOptions="End"/>
+
+
+                     <Image Source="chao.png"
+                            x:Name="Chao"
+                            Aspect="AspectFill"
+                            VerticalOptions="End"
+                            Margin="0, 600, 0, 0"/>
+
+            
+
+              <Frame x:Name="GameOverFrame"
+                     BackgroundColor="#99000000"
+                     HorizontalOptions="Fill"
+                     VerticalOptions="Fill"
+                     CornerRadius="0">
+
+                     <Frame.GestureRecognizers>
+
+                            <TapGestureRecognizer Tapped="Cabo"/>
+
+                     </Frame.GestureRecognizers>
+
+                     <Image Source="acabou.png"/>
+
+              </Frame>
+       </Grid>
 
 </ContentPage>

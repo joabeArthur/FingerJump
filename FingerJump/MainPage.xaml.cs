@@ -12,7 +12,7 @@ public partial class MainPage : ContentPage
 
 	void ColocarGravidade()
 	{
-	//	cachorro.TranslationY += Gravidade;
+		cachorro.TranslationY += Gravidade;
 	}
 
    
@@ -27,14 +27,14 @@ public partial class MainPage : ContentPage
 
 	void Cabo(object s, TappedEventArgs a)
 	{
-	//	FrameAcabou.IsVisible = false;
+		GameOverFrame.IsVisible = false;
 		Inicializar();
 		Desenhar();
 	}
 
 	void Inicializar()
 	{
-	//	cachorro.TranslationY = 0;
+		cachorro.TranslationY = 0;
 	}
 }
 
