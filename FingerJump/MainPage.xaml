@@ -7,7 +7,7 @@
        <Grid>
 
               <Grid.GestureRecognizers>
-                     <TapGestureRecognizers Tapped="ClicaNaTela"/>
+                     <TapGestureRecognizer Tapped="ClicaNaTela"/>
               </Grid.GestureRecognizers>
 
               <Image Source="cidade.jpg"

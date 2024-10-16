@@ -29,6 +29,14 @@ public partial class MainPage : ContentPage
 		{
 			ColocarGravidade();
 			GerenciaCanos();
+			if (EstaPulando)
+		{
+			AplicaPulo();
+		}
+		else
+		{
+			Gravidade();
+		}
 			if (VericaColisao())
 			{
 				Morte = true;
@@ -36,18 +44,6 @@ public partial class MainPage : ContentPage
 				break;
 			}
 			await Task.Delay(TempoEntreFremes);
-		}
-	}
-
-	void AlterarDesenho()
-	{
-		if (EstaPulando)
-		{
-			AplicaPulo();
-		}
-		else
-		{
-			Gravidade();
 		}
 	}
 
