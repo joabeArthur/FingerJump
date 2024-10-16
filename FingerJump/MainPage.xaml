@@ -13,27 +13,27 @@
                      HorizontalOptions="Fill"/>
 
               <Image Source="cachorro.png"
-                     x:Name="Passaro"
+                     x:Name="imgPassaro"
                      Margin="10"
                      HorizontalOptions="Start"
                      HeightRequest="150"
                      WidthRequest="150"/>
 
               <Image Source="osso.png"
-                     x:Name="ossoCima"
+                     x:Name="ImgCanoCima"
                      HorizontalOptions="End"
                      MaximumHeightRequest="350"
                      VerticalOptions="Start"/>
               
               <Image Source="osso.png"
-                            x:Name="ossoBaixo"
+                            x:Name="ImgCanoBaixo"
                             HorizontalOptions="End"
                             MaximumHeightRequest="350"
                             VerticalOptions="End"/>
 
 
                      <Image Source="chao.png"
-                            x:Name="Chao"
+                            x:Name="imgChao"
                             Aspect="AspectFill"
                             VerticalOptions="End"
                             Margin="0, 600, 0, 0"/>
