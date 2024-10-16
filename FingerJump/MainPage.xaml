@@ -36,10 +36,11 @@
                             VerticalOptions="End"/>
 
 
-                     <Image Source="chao.png"
+              <Image Source="chao.png"
                             x:Name="imgChao"
                             Aspect="AspectFill"
                             VerticalOptions="End"
+                            HeightRequest="70"
                             Margin="0, 600, 0, 0"/>
 
             

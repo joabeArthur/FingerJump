@@ -12,6 +12,7 @@ public partial class MainPage : ContentPage
 	const int MaxTempoPulando = 3;
 	bool EstaPulando = false;
 	int TempoPulando = 0;
+	const int AberturaMinima = 200;
 	public MainPage()
 	{
 		InitializeComponent();
@@ -35,7 +36,7 @@ public partial class MainPage : ContentPage
 		}
 		else
 		{
-			Gravidade();
+			ColocarGravidade();
 		}
 			if (VericaColisao())
 			{
@@ -69,6 +70,7 @@ public partial class MainPage : ContentPage
 	void Inicializar()
 	{
 		imgPassaro.TranslationY = 0;
+		Morte = false;
 	}
 
     protected override void OnSizeAllocated(double w, double h)
@@ -81,7 +83,22 @@ public partial class MainPage : ContentPage
 	void GerenciaCanos()
 	{
 		ImgCanoCima.TranslationX -= Velocidade;
-		ImgCanoBaixo.TranslationY -= Velocidade;// (modificação) quando reaparecer mudar tamanho.
+		ImgCanoBaixo.TranslationX -= Velocidade;// (modificação) quando reaparecer mudar tamanho.
+		if (ImgCanoBaixo.TranslationX < - LarguraJanela)
+		{
+			ImgCanoBaixo.TranslationX = 0;
+			ImgCanoCima.TranslationX = 0;
+		}
+
+		if (ImgCanoCima.TranslationX == imgPassaro.TranslationX)
+		{
+			var canocimaY = ImgCanoCima.TranslationY;
+			var passaroY = imgPassaro.TranslationX;
+			if (canocimaY  == passaroY)
+			{
+				Morte = true;
+			}
+		}
 	}
 
 	void AplicaPulo()
@@ -116,7 +133,7 @@ public partial class MainPage : ContentPage
 
 	bool VerificarColisaoBaixo()
 	{
-		var maxY = AlturaJanela / 2 - imgChao.HeightRequest;
+		var maxY = AlturaJanela / 2 - imgChao.HeightRequest - 40;
 
 		if (imgPassaro.TranslationY >= maxY)
 		{
