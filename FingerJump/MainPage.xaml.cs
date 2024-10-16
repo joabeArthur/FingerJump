@@ -8,6 +8,10 @@ public partial class MainPage : ContentPage
 	double LarguraJanela = 0;
 	double AlturaJanela = 0;
 	int Velocidade = 20;
+	const int ForcaPulo = 30;
+	const int MaxTempoPulando = 3;
+	bool EstaPulando = false;
+	int TempoPulando = 0;
 	public MainPage()
 	{
 		InitializeComponent();
@@ -32,6 +36,18 @@ public partial class MainPage : ContentPage
 				break;
 			}
 			await Task.Delay(TempoEntreFremes);
+		}
+	}
+
+	void AlterarDesenho()
+	{
+		if (EstaPulando)
+		{
+			AplicaPulo();
+		}
+		else
+		{
+			Gravidade();
 		}
 	}
 
@@ -70,6 +86,22 @@ public partial class MainPage : ContentPage
 	{
 		ImgCanoCima.TranslationX -= Velocidade;
 		ImgCanoBaixo.TranslationY -= Velocidade;// (modificação) quando reaparecer mudar tamanho.
+	}
+
+	void AplicaPulo()
+	{
+		imgPassaro.TranslationY -= ForcaPulo;
+		TempoPulando++;
+		if (TempoPulando >= MaxTempoPulando)
+		{
+			EstaPulando = false;
+			TempoPulando = 0;
+		}
+	}
+
+	void ClicaNaTela(object i, TappedEventArgs a)
+	{
+		EstaPulando = true;
 	}
 
 	bool VerificarColisaoCima()
