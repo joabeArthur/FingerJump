@@ -2,17 +2,18 @@
 
 public partial class MainPage : ContentPage
 {
-	const int Gravidade = 1;
-	const int TempoEntreFremes = 25;
+	const int Gravidade = 2;
+	const int TempoEntreFremes = 4;
 	bool Morte = false;
 	double LarguraJanela = 0;
 	double AlturaJanela = 0;
 	int Velocidade = 20;
 	const int ForcaPulo = 30;
-	const int MaxTempoPulando = 3;
+	const int MaxTempoPulando = 5;
 	bool EstaPulando = false;
-	int TempoPulando = 0;
-	const int AberturaMinima = 200;
+	int TempoPulando = 3;
+	const int AberturaMinima = 130;
+	int Pontuacao = 0;
 	public MainPage()
 	{
 		InitializeComponent();
@@ -83,21 +84,24 @@ public partial class MainPage : ContentPage
 	void GerenciaCanos()
 	{
 		ImgCanoCima.TranslationX -= Velocidade;
-		ImgCanoBaixo.TranslationX -= Velocidade;// (modificação) quando reaparecer mudar tamanho.
-		if (ImgCanoBaixo.TranslationX < - LarguraJanela)
+		ImgCanoBaixo.TranslationX -= Velocidade;
+		if (ImgCanoBaixo.TranslationX <= -LarguraJanela)
 		{
-			ImgCanoBaixo.TranslationX = 0;
-			ImgCanoCima.TranslationX = 0;
-		}
+			ImgCanoBaixo.TranslationX = 1000;
+			ImgCanoCima.TranslationX = 1000;
 
-		if (ImgCanoCima.TranslationX == imgPassaro.TranslationX)
-		{
-			var canocimaY = ImgCanoCima.TranslationY;
-			var passaroY = imgPassaro.TranslationX;
-			if (canocimaY  == passaroY)
-			{
-				Morte = true;
-			}
+			var AlturaMax = -100;
+			var AlturaMin = - ImgCanoBaixo.HeightRequest;
+
+			ImgCanoCima.TranslationY = Random.Shared.Next((int)AlturaMin, (int)AlturaMax);
+			ImgCanoBaixo.TranslationY = ImgCanoCima.TranslationY + AberturaMinima + ImgCanoBaixo.HeightRequest;
+
+			Pontuacao++;
+			AcabouScore.Text = "ACABO FI"
+			 +
+			 "                                                "
+			 +
+			  "SCORE : " + Pontuacao.ToString("D3"); 
 		}
 	}
 

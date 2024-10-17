@@ -25,14 +25,20 @@
 
               <Image Source="osso.png"
                      x:Name="ImgCanoCima"
+                     Aspect="AspectFill"
                      HorizontalOptions="End"
-                     MaximumHeightRequest="350"
+                     HeightRequest="300"
+                     WidthRequest="150"
+                      BackgroundColor="Blue"
                      VerticalOptions="Start"/>
               
               <Image Source="osso.png"
-                            x:Name="ImgCanoBaixo"
                             HorizontalOptions="End"
-                            MaximumHeightRequest="350"
+                            x:Name="ImgCanoBaixo"
+                            Aspect="AspectFill"
+                            HeightRequest="300"
+                            WidthRequest="150"
+                            BackgroundColor="Blue"
                             VerticalOptions="End"/>
 
 
@@ -48,8 +54,7 @@
               <Frame x:Name="GameOverFrame"
                      BackgroundColor="#99000000"
                      HorizontalOptions="Fill"
-                     VerticalOptions="Fill"
-                     CornerRadius="0">
+                     VerticalOptions="Fill">
 
                      <Frame.GestureRecognizers>
 
@@ -57,8 +62,11 @@
 
                      </Frame.GestureRecognizers>
 
-                     <Image Source="acabou.png"/>
-
+                     <Label x:Name="AcabouScore"
+                            FontSize="60"
+                            FontFamily="RocksDeath"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"/>
               </Frame>
        </Grid>
 
