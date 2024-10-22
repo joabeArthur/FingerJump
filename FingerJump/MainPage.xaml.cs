@@ -12,7 +12,7 @@ public partial class MainPage : ContentPage
 	const int MaxTempoPulando = 5;
 	bool EstaPulando = false;
 	int TempoPulando = 3;
-	const int AberturaMinima = 130;
+	const int AberturaMinima = 20;
 	int Pontuacao = 0;
 	public MainPage()
 	{
@@ -53,12 +53,19 @@ public partial class MainPage : ContentPage
 	{
 		if (!Morte)
 		{
-			if (VerificarColisaoCima() || VerificarColisaoBaixo())
+			if (VerificarColisaoCima() || VerificarColisaoBaixo() || VerificarColisaoCanoCima() || VerificarColisaoCanoBaixo())
 			{
 				return true;
 			}
+		 	else
+		 	{
+				return false;
+		 	}
 		}
-		return false;
+		else
+		{
+			return false;
+		}
 	}
 
 	void Cabo(object s, TappedEventArgs a)
@@ -72,6 +79,12 @@ public partial class MainPage : ContentPage
 	{
 		imgPassaro.TranslationY = 0;
 		Morte = false;
+		ImgCanoCima.TranslationX = -LarguraJanela;
+		ImgCanoBaixo.TranslationX = -LarguraJanela;
+		imgPassaro.TranslationX = 0;
+		imgPassaro.TranslationY = 0;
+		Pontuacao = 0;
+		GerenciaCanos();
 	}
 
     protected override void OnSizeAllocated(double w, double h)
@@ -99,9 +112,9 @@ public partial class MainPage : ContentPage
 			Pontuacao++;
 			AcabouScore.Text = "ACABO FI"
 			 +
-			 "                                                "
+			 "     "
 			 +
-			  "SCORE : " + Pontuacao.ToString("D3"); 
+			  "Passou por :   " + Pontuacao.ToString("D3") + "   Canos (Tu é TCHOLA)."; 
 		}
 	}
 
@@ -121,6 +134,39 @@ public partial class MainPage : ContentPage
 		EstaPulando = true;
 	}
 
+	bool VerificarColisaoCanoCima()
+	{
+		var posHorizontalPassaro = (LarguraJanela / 2) - (imgPassaro.WidthRequest / 2);
+		var posVerticalPassaro = (AlturaJanela / 2) - (imgPassaro.HeightRequest / 2) + imgPassaro.TranslationY;
+
+		if (posHorizontalPassaro >= Math.Abs(ImgCanoCima.TranslationX) - ImgCanoCima.WidthRequest &&
+			posHorizontalPassaro <= Math.Abs(ImgCanoCima.TranslationX) + ImgCanoCima.WidthRequest &&
+			posVerticalPassaro <= ImgCanoCima.HeightRequest + imgPassaro.TranslationY)
+			{
+				return true; 
+			}
+			else
+			{
+				return false;
+			}
+	}
+
+	bool VerificarColisaoCanoBaixo()
+	{
+		var posHorizontalPassaro = (LarguraJanela / 2) - (imgPassaro.WidthRequest / 2);
+		var posVerticalPassaro = (AlturaJanela / 2) - (imgPassaro.HeightRequest / 2) + imgPassaro.TranslationY;
+
+		if (posHorizontalPassaro >= Math.Abs(ImgCanoBaixo.TranslationX) - ImgCanoBaixo.WidthRequest &&
+			posHorizontalPassaro <= Math.Abs(ImgCanoBaixo.TranslationX) + ImgCanoBaixo.WidthRequest &&
+			posVerticalPassaro <= ImgCanoBaixo.HeightRequest + imgPassaro.TranslationY)
+			{
+				return true; 
+			}
+			else
+			{
+				return false;
+			}
+	}
 	bool VerificarColisaoCima()
 	{
 		var minY =- AlturaJanela / 2;
@@ -133,6 +179,7 @@ public partial class MainPage : ContentPage
 		{
 			return false;
 		}
+
 	}
 
 	bool VerificarColisaoBaixo()
