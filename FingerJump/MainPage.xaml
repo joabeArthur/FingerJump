@@ -10,7 +10,7 @@
                      <TapGestureRecognizer Tapped="ClicaNaTela"/>
               </Grid.GestureRecognizers>
 
-              <Image Source="cidade.jpg"
+              <Image Source="cidade1.png"
                      Aspect="AspectFill"
                      x:Name="Fundo"
                      VerticalOptions="Fill"
